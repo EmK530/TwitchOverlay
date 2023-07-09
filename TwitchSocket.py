@@ -10,11 +10,13 @@ except ImportError:
    import websocket
 from threading import Thread
 from Render import messages,launched
+import random
 
 success=False
 nonce = ""
 running=[False]
 old=print
+username='justinfan%i' % random.randint(10000, 99999)
 def print(string):
    old("[TwitchSocket] "+string)
 
@@ -73,8 +75,8 @@ def on_open(ws):
    print("Authenticating...")
    ws.send('CAP REQ :twitch.tv/tags twitch.tv/commands')
    ws.send('PASS SCHMOOPIIE')
-   ws.send('NICK justinfan16911')
-   ws.send('USER justinfan16911 8 * :justinfan16911')
+   ws.send('NICK %i' % username)
+   ws.send('USER %i 8 * :%i' % username)
    print("Login sent")
 def run():
    while True:
