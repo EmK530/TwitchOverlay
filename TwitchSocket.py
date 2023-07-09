@@ -75,8 +75,8 @@ def on_open(ws):
    print("Authenticating...")
    ws.send('CAP REQ :twitch.tv/tags twitch.tv/commands')
    ws.send('PASS SCHMOOPIIE')
-   ws.send('NICK %i' % username)
-   ws.send('USER %i 8 * :%i' % username)
+   ws.send('NICK '+username)
+   ws.send('USER '+username+' 8 * :'+username)
    print("Login sent")
 def run():
    while True:
